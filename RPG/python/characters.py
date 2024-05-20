@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass
@@ -7,7 +7,7 @@ class Character:
     lvl: int = 1
     location: int = 0
     max_range: int = None
-    fractions: list = None
+    fractions: list[str] = field(default_factory=list)
 
     @property
     def is_alive(self):
@@ -63,13 +63,9 @@ class Character:
         other.hp = min(1000, other.hp + hp)
 
     def join_fraction(self, faction: str):
-        if self.fractions is None:
-            self.fractions = []
         self.fractions.append(faction)
 
     def leave_fraction(self, faction: str):
-        if self.fractions is None:
-            return
         self.fractions.remove(faction)
 
     def is_allied(self, other: "Character") -> bool:

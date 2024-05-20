@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 
 class Thing(ABC):
     hp: int
+    fractions = None
 
     @property
     @abstractmethod
